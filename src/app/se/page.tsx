@@ -3,6 +3,7 @@ import Link from "next/link";
 const resources = [
   {
     category: "Platform Fundamentals",
+    link: "/se/platform-fundamentals",
     items: [
       { title: "The Vercel Platform — Mental Model", anchor: "#2--the-vercel-platform--mental-model" },
       { title: "Compute — The Three Runtimes", anchor: "#3--compute--the-three-runtimes" },
@@ -12,6 +13,7 @@ const resources = [
   },
   {
     category: "Infrastructure & Performance",
+    link: "/se/infrastructure-performance",
     items: [
       { title: "The Build Pipeline & Deployment Model", anchor: "#6--the-build-pipeline--deployment-model" },
       { title: "Edge Network & CDN", anchor: "#7--edge-network--cdn" },
@@ -21,6 +23,7 @@ const resources = [
   },
   {
     category: "Enterprise & Security",
+    link: "/se/enterprise-security",
     items: [
       { title: "Security — WAF, DDoS, Access Control", anchor: "#13--security--waf-ddos-access-control" },
       { title: "Enterprise Features", anchor: "#17--enterprise-features" },
@@ -29,6 +32,7 @@ const resources = [
   },
   {
     category: "Advanced Topics",
+    link: "/se/advanced-topics",
     items: [
       { title: "The AI Cloud Layer", anchor: "#14--the-ai-cloud-layer" },
       { title: "Composable Architecture & Headless", anchor: "#15--composable-architecture--headless-integrations" },
@@ -189,25 +193,25 @@ export default function SEPage() {
         <div className="row g-4 mb-5">
           {resources.map((group) => (
             <div key={group.category} className="col-md-6">
-              <div className="feature-card">
-                <h3 style={{ fontSize: "1.2rem" }}>{group.category}</h3>
-                <ul className="list-unstyled mt-3 mb-0">
-                  {group.items.map((item) => (
-                    <li key={item.title} className="mb-2">
-                      <Link
-                        href={`/blog${item.anchor}`}
-                        style={{
-                          color: "#818cf8",
-                          textDecoration: "none",
-                          fontSize: "0.95rem",
-                        }}
-                      >
-                        → {item.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Link href={group.link} style={{ textDecoration: "none" }}>
+                <div className="feature-card">
+                  <h3 style={{ fontSize: "1.2rem" }}>{group.category}</h3>
+                  <ul className="list-unstyled mt-3 mb-0">
+                    {group.items.map((item) => (
+                      <li key={item.title} className="mb-2">
+                        <span
+                          style={{
+                            color: "#818cf8",
+                            fontSize: "0.95rem",
+                          }}
+                        >
+                          → {item.title}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
