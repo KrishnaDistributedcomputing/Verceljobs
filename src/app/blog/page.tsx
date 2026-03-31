@@ -43,6 +43,12 @@ const categories = [
     link: "/blog/azure-migration",
     badge: "Migration",
   },
+  {
+    title: "🎯 How Vercel Interviews",
+    desc: "The complete interview guide — 6 stages, technical topics, sample questions, demo ideas, what they look for, compensation, and timeline.",
+    link: "/blog/interview-guide",
+    badge: "Interview",
+  },
 ];
 
 export default function BlogPage() {
