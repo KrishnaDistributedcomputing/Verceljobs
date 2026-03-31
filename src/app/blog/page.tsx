@@ -55,6 +55,12 @@ const categories = [
     link: "/blog/zero-to-hero",
     badge: "Zero to Hero",
   },
+  {
+    title: "🏗️ 10 Hosting Use Cases",
+    desc: "Deep-dive architecture for 10 industries — e-commerce, media, SaaS, AI, fintech, healthcare, EdTech, and more. Rendering strategies, caching patterns, cost analysis, and 30 interview questions.",
+    link: "/blog/use-cases",
+    badge: "Use Cases",
+  },
 ];
 
 export default function BlogPage() {
