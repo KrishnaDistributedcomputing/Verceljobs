@@ -5,37 +5,37 @@ const features = [
     icon: "📖",
     title: "Deep Technical Study Guide",
     desc: "Cover-to-cover preparation material spanning platform fundamentals, architecture decisions, pricing, and the AI Cloud layer.",
-    link: "/blog",
+    link: "/blog/study-guide",
   },
   {
     icon: "🏗️",
     title: "Architecture Patterns",
     desc: "Learn common customer architectures — from headless e-commerce to multi-tenant SaaS on Vercel's edge network.",
-    link: "/blog#18--common-customer-architectures",
+    link: "/blog/architectures",
   },
   {
     icon: "⚡",
     title: "Compute & Rendering",
     desc: "Master Serverless, Edge, and Fluid Compute runtimes. Understand SSR, SSG, ISR, and PPR inside out.",
-    link: "/blog#3--compute--the-three-runtimes",
+    link: "/se/platform-fundamentals",
   },
   {
     icon: "🔒",
     title: "Security & Enterprise",
     desc: "WAF, DDoS protection, RBAC, SSO/SAML, audit logs, and compliance — everything enterprise customers ask about.",
-    link: "/blog#13--security--waf-ddos-access-control",
+    link: "/se/enterprise-security",
   },
   {
     icon: "🤖",
     title: "AI Cloud Layer",
     desc: "AI SDK, AI Gateway, streaming, tool calling, and integrating LLMs into Vercel-hosted applications.",
-    link: "/blog#14--the-ai-cloud-layer",
+    link: "/blog/study-guide/ai-cloud",
   },
   {
     icon: "💰",
     title: "Pricing & Migration",
     desc: "Navigate Hobby, Pro, and Enterprise tiers. Learn migration patterns from legacy platforms to Vercel.",
-    link: "/blog#16--pricing-model--in-depth",
+    link: "/blog/study-guide/pricing",
   },
 ];
 
