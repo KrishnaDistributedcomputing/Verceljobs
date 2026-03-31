@@ -382,8 +382,11 @@ export default function SEPage() {
         </div>
 
         {/* CTA */}
-        <div className="text-center py-4">
-          <Link href="/blog" className="btn-glow">
+        <div className="text-center py-4 d-flex gap-3 justify-content-center flex-wrap">
+          <Link href="/quiz" className="btn-glow">
+            Take the SE Quiz →
+          </Link>
+          <Link href="/blog" className="btn-glow" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}>
             Read the Full Study Guide →
           </Link>
         </div>

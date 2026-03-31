@@ -82,6 +82,11 @@ export function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" href="/quiz">
+                Quiz
+              </Link>
+            </li>
+            <li className="nav-item">
               <button
                 onClick={toggleTheme}
                 className="nav-link"
