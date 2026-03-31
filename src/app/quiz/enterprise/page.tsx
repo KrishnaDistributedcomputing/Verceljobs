@@ -114,6 +114,118 @@ const questions: Question[] = [
     correct: 1,
     explanation: "Vercel Spend Management: default $200 on-demand budget with email/SMS/web notifications. You can set a configurable hard limit — when reached, Vercel auto-pauses all projects to prevent surprise bills.",
   },
+  {
+    id: 11,
+    question: "What is the Hobby plan's maximum function execution time?",
+    options: ["10 seconds", "30 seconds", "60 seconds", "300 seconds"],
+    correct: 2,
+    explanation: "Hobby plan limits function execution to 60 seconds max. Pro extends to 300 seconds with Fluid Compute (up to 13 minutes for some configs). Enterprise gets custom limits. Common trap: teams build on Hobby, launch, then hit limits.",
+  },
+  {
+    id: 12,
+    question: "A Hobby plan user launches a commercial product. What's the risk?",
+    options: [
+      "No risk — Hobby supports commercial use",
+      "They'll just hit rate limits",
+      "It violates Vercel's Terms of Service — commercial use is prohibited on Hobby. They need at least Pro plan",
+      "They'll be automatically upgraded to Pro",
+    ],
+    correct: 2,
+    explanation: "Hobby plan explicitly prohibits commercial use. Teams that build on Hobby, launch, and go viral face ToS violations AND technical limits (60s functions, 100GB transfer, 1M edge requests). Always recommend Pro for commercial projects.",
+  },
+  {
+    id: 13,
+    question: "What identity provider integrations does Vercel Enterprise SAML SSO support?",
+    options: [
+      "Only Okta",
+      "Okta, Azure AD, and Google Workspace via SAML 2.0, with SCIM for automated user provisioning",
+      "Only Google Workspace",
+      "Basic username/password only",
+    ],
+    correct: 1,
+    explanation: "Enterprise supports SAML 2.0 (Okta, Azure AD, Google Workspace) + SCIM for automated user provisioning/deprovisioning + Directory Sync for automatic group management. A key Enterprise trigger for security-conscious teams.",
+  },
+  {
+    id: 14,
+    question: "What does Vercel's audit log track?",
+    options: [
+      "Only deployment events",
+      "Every action in the Vercel dashboard: deployments, env var changes, team member additions, security events",
+      "Only billing events",
+      "Only code changes in the repository",
+    ],
+    correct: 1,
+    explanation: "Audit logs track every action: deployments, environment variable changes, team member additions/removals, security events, configuration changes. Essential for compliance (SOC 2, HIPAA) and security investigations.",
+  },
+  {
+    id: 15,
+    question: "What overage rate applies to Edge Requests beyond the Pro plan's included 10M?",
+    options: [
+      "$1/million", "$2/million", "$5/million", "$10/million",
+    ],
+    correct: 1,
+    explanation: "Edge Request overage on Pro is $2/million above the included 10M. Important: every request to the CDN counts — even for static assets. High-traffic sites with many assets accumulate edge requests quickly.",
+  },
+  {
+    id: 16,
+    question: "What's included with Vercel Pro's $20/user/month subscription?",
+    options: [
+      "Unlimited everything",
+      "$20 monthly usage credit, 1TB Fast Data Transfer, 10M Edge Requests, 300s function timeout, unlimited free viewer seats",
+      "Only hosting for one project",
+      "Just CI/CD pipeline access",
+    ],
+    correct: 1,
+    explanation: "Pro includes: $20 usage credit (offsets charges), 1TB Fast Data Transfer, 10M Edge Requests, up to 300s function timeout with Fluid Compute, spend management, and unlimited free viewer seats. Good value for small-to-medium teams.",
+  },
+  {
+    id: 17,
+    question: "What does Vercel's multi-region compute (Enterprise) provide?",
+    options: [
+      "Only CDN distribution in multiple regions",
+      "Deploy Vercel Functions to multiple regions simultaneously with automatic traffic routing to the nearest healthy region + AZ/region failover",
+      "Data replication across regions",
+      "DNS-based geographic load balancing only",
+    ],
+    correct: 1,
+    explanation: "Enterprise multi-region compute deploys functions to multiple regions. Traffic routes to the nearest healthy region. With Fluid Compute, automatic failover handles: 1) AZ failure → another AZ in same region, 2) Region failure → next closest region.",
+  },
+  {
+    id: 18,
+    question: "What WAF protections does Vercel Enterprise include out of the box?",
+    options: [
+      "Only IP blocking",
+      "OWASP Top 10 protection (SQL injection, XSS, CSRF), bot attacks, DDoS mitigation, up to 1,000 custom rules + 1,000 IP blocking rules",
+      "Only DDoS protection",
+      "Basic firewall with no customization",
+    ],
+    correct: 1,
+    explanation: "Enterprise WAF protects against: OWASP Top 10 (SQL injection, XSS, CSRF), bot attacks, DDoS (automatic network-level). Plus up to 1,000 custom rules (country blocks, rate limits, user agent filtering) and 1,000 IP blocking rules.",
+  },
+  {
+    id: 19,
+    question: "How does Vercel handle DDoS attacks on static assets?",
+    options: [
+      "Static assets are vulnerable to DDoS",
+      "Static assets and edge-cached responses serve without touching Vercel Functions, dramatically reducing the attack surface — the edge network absorbs volumetric attacks",
+      "All DDoS traffic is routed to a sinkhole",
+      "Static assets are rate-limited per IP",
+    ],
+    correct: 1,
+    explanation: "Vercel's edge network absorbs volumetric DDoS automatically. Static assets and cached responses serve from CDN without invoking functions — the attack surface is dramatically reduced. Attackers hit the edge cache, not your compute.",
+  },
+  {
+    id: 20,
+    question: "What's the typical minimum annual cost for Vercel Enterprise?",
+    options: [
+      "$5,000/year",
+      "$10,000/year",
+      "$20,000–25,000/year minimum (custom pricing)",
+      "$50,000/year",
+    ],
+    correct: 2,
+    explanation: "Enterprise is custom pricing, typically starting around $20-25k/year minimum. Recommend Enterprise when customers need: SAML SSO, 99.99% SLA, managed WAF, audit logs, multi-region compute, HIPAA/PCI compliance, or dedicated support.",
+  },
 ];
 
 export default function EnterpriseQuiz() {

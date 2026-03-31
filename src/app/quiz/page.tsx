@@ -3,57 +3,57 @@ import Link from "next/link";
 const quizTopics = [
   {
     title: "🏗️ Platform Fundamentals",
-    desc: "Vercel mental model, compute runtimes, Edge vs Serverless, framework-defined infrastructure.",
+    desc: "Vercel mental model, compute runtimes, Edge vs Serverless, Fluid Compute, FDI, and company facts.",
     link: "/quiz/platform",
-    questions: 10,
+    questions: 20,
     difficulty: "Foundational",
     color: "#667eea",
   },
   {
     title: "⚡ Rendering & Next.js",
-    desc: "SSG, ISR, SSR, RSC, PPR — when to use each, trade-offs, and code patterns.",
+    desc: "SSG, ISR, SSR, RSC, PPR, Streaming, Draft Mode — when to use each, trade-offs, architecture patterns, and migration.",
     link: "/quiz/rendering",
-    questions: 10,
+    questions: 20,
     difficulty: "Core",
     color: "#8b5cf6",
   },
   {
     title: "💾 Caching Deep-Dive",
-    desc: "The four cache layers, revalidation strategies, anti-patterns, and cache debugging.",
+    desc: "The four cache layers, revalidation strategies, webhooks, Cache-Control headers, anti-patterns, and cost implications.",
     link: "/quiz/caching",
-    questions: 10,
+    questions: 20,
     difficulty: "Critical",
     color: "#06b6d4",
   },
   {
     title: "🌐 Edge & Performance",
-    desc: "Edge Network, Middleware, Core Web Vitals (LCP, CLS, INP), and performance optimization.",
+    desc: "Edge Network, Middleware, Turbopack, Core Web Vitals (LCP, CLS, INP), next/image, next/font, and optimization patterns.",
     link: "/quiz/performance",
-    questions: 10,
+    questions: 20,
     difficulty: "Core",
     color: "#10b981",
   },
   {
     title: "🤖 AI & Modern Stack",
-    desc: "AI SDK, AI Gateway, Workflows, Sandbox, v0, Fluid Compute for AI workloads.",
+    desc: "AI SDK 6, AI Gateway, useChat, Workflows, Sandbox, v0, BYOK, provider failover, and cost optimization.",
     link: "/quiz/ai",
-    questions: 10,
+    questions: 20,
     difficulty: "Advanced",
     color: "#f59e0b",
   },
   {
     title: "🔒 Enterprise & Security",
-    desc: "WAF, compliance, SSO, pricing, enterprise features, and security architecture.",
+    desc: "WAF, compliance, SAML SSO, Hobby/Pro/Enterprise pricing, DDoS, audit logs, deployment protection, and cost management.",
     link: "/quiz/enterprise",
-    questions: 10,
+    questions: 20,
     difficulty: "Enterprise",
     color: "#ef4444",
   },
   {
     title: "🏢 Customer Scenarios",
-    desc: "Real-world architecture patterns, migration strategies, and customer conversation simulations.",
+    desc: "Real-world architecture patterns, code audits, migrations (CRA, Gatsby, Pages Router), customer objections, POC strategies, and workshops.",
     link: "/quiz/scenarios",
-    questions: 10,
+    questions: 20,
     difficulty: "SE Interview",
     color: "#ec4899",
   },
@@ -96,7 +96,7 @@ export default function QuizPage() {
             SE Knowledge Quiz
           </h1>
           <p style={{ color: "#94a3b8", maxWidth: "600px", margin: "0 auto" }}>
-            Test your Vercel SE knowledge across 7 topics. 70 questions total covering
+            Test your Vercel SE knowledge across 7 topics. 140 questions total covering
             everything from platform fundamentals to customer scenarios.
           </p>
         </div>
