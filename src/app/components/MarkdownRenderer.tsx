@@ -5,8 +5,8 @@ import remarkGfm from "remark-gfm";
 
 export function MarkdownRenderer({ content }: { content: string }) {
   return (
-    <article className="prose">
+    <div className="blog-content">
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-    </article>
+    </div>
   );
 }

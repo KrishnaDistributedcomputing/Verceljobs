@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Vercel SE Technical Study Guide",
+  title: "VercelJobs — Vercel Career Preparation Hub",
   description:
-    "Deep technical study guide for Vercel Solutions Engineer role preparation",
+    "Your complete resource for Vercel Solutions Engineer role preparation. Study guides, architecture patterns, and interview prep.",
 };
 
 export default function RootLayout({
@@ -14,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
