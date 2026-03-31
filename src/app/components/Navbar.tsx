@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 export function Navbar() {
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const { theme, toggleTheme } = useTheme();
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -78,6 +80,23 @@ export function Navbar() {
               <Link className="nav-link" href="/se">
                 SE Resources
               </Link>
+            </li>
+            <li className="nav-item">
+              <button
+                onClick={toggleTheme}
+                className="nav-link"
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "1.2rem",
+                  padding: "0.5rem",
+                }}
+                aria-label="Toggle theme"
+                title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {theme === "dark" ? "☀️" : "🌙"}
+              </button>
             </li>
           </ul>
         </div>
