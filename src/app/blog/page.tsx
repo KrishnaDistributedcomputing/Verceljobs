@@ -37,6 +37,12 @@ const categories = [
     link: "/blog/ai-tools",
     badge: "AI & Tools",
   },
+  {
+    title: "☁️ Azure Engineer → Vercel",
+    desc: "Complete migration guide for Azure engineers — service mapping, migration patterns, 6-week learning path, common pitfalls, and concept translations.",
+    link: "/blog/azure-migration",
+    badge: "Migration",
+  },
 ];
 
 export default function BlogPage() {
