@@ -49,6 +49,12 @@ const categories = [
     link: "/blog/interview-guide",
     badge: "Interview",
   },
+  {
+    title: "🚀 Zero to Hero: SE Interview Prep",
+    desc: "Structured 8-week program — from no Vercel knowledge to interview-ready SE. Daily tasks, weekly projects, answer templates, and readiness checklist.",
+    link: "/blog/zero-to-hero",
+    badge: "Zero to Hero",
+  },
 ];
 
 export default function BlogPage() {
