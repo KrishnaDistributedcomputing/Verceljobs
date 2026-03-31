@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import MermaidDiagram from "../../components/MermaidDiagram";
 
 interface InterviewQ {
   question: string;
@@ -17,6 +18,7 @@ interface UseCase {
   overview: string;
   customerExamples: string[];
   problemStatement: string;
+  mermaidChart: string;
   architecture: {
     layers: { name: string; detail: string; tech: string }[];
     diagram: string;
@@ -38,6 +40,27 @@ const useCases: UseCase[] = [
     overview: "A global e-commerce storefront with 100K+ product pages, real-time inventory, personalized recommendations, and sub-2s page loads. The commerce backend (Shopify, Commercetools, or BigCommerce) handles inventory, cart, and checkout via APIs. Next.js on Vercel is the presentation layer — fast, globally distributed, SEO-optimized.",
     customerExamples: ["Supreme", "Under Armour", "eBay", "Ramp"],
     problemStatement: "Full-stack monolithic commerce platforms (Magento, Salesforce Commerce Cloud) have slow page loads (4-8s LCP), poor mobile performance, and require full rebuilds for content changes. They can't scale globally without expensive CDN overlays.",
+    mermaidChart: `graph TB
+    subgraph Edge["Edge Middleware"]
+        MW["Auth / Geo-routing / A-B Testing"]
+    end
+    subgraph Nextjs["Next.js on Vercel"]
+        HOME["/ Homepage\nISR"]
+        PRODUCT["/product/slug\nISR + Webhook"]
+        CART["/cart\nCSR"]
+        CHECKOUT["/checkout\nSSR auth"]
+    end
+    subgraph APIs["Backend Services"]
+        SHOP["Shopify"]
+        ALG["Algolia"]
+        SAN["Sanity CMS"]
+        STR["Stripe"]
+    end
+    MW --> Nextjs
+    HOME --> SAN
+    PRODUCT --> SHOP
+    PRODUCT --> ALG
+    CHECKOUT --> STR`,
     architecture: {
       layers: [
         { name: "Presentation", detail: "Next.js on Vercel — ISR product pages, SSR checkout, CSR cart", tech: "Next.js App Router, React Server Components" },
@@ -98,6 +121,27 @@ const useCases: UseCase[] = [
     overview: "A news/media platform with 1M+ articles, real-time breaking news, editorial CMS workflows, and ad-supported monetization. Content editors publish via headless CMS (Sanity, Contentful). Readers get fast, SEO-optimized pages with the latest content — globally.",
     customerExamples: ["The Washington Post", "Condé Nast", "Bloomberg"],
     problemStatement: "Legacy CMS platforms (WordPress, Drupal) struggle with traffic spikes during breaking news. Full-page rebuilds take hours for large sites. Poor Core Web Vitals hurt SEO rankings and ad revenue. No preview capability for editors.",
+    mermaidChart: `graph TB
+    subgraph Edge["Edge Middleware"]
+        MW["Auth / Geo-routing / A-B Testing"]
+    end
+    subgraph Nextjs["Next.js on Vercel"]
+        HOME["/ Homepage\nISR"]
+        PRODUCT["/product/slug\nISR + Webhook"]
+        CART["/cart\nCSR"]
+        CHECKOUT["/checkout\nSSR auth"]
+    end
+    subgraph APIs["Backend Services"]
+        SHOP["Shopify"]
+        ALG["Algolia"]
+        SAN["Sanity CMS"]
+        STR["Stripe"]
+    end
+    MW --> Nextjs
+    HOME --> SAN
+    PRODUCT --> SHOP
+    PRODUCT --> ALG
+    CHECKOUT --> STR`,
     architecture: {
       layers: [
         { name: "Presentation", detail: "Next.js on Vercel — ISR articles, SSR live feeds, SSG evergreen content", tech: "Next.js, React Server Components" },
@@ -159,6 +203,27 @@ const useCases: UseCase[] = [
     overview: "A B2B SaaS platform with a public marketing site, blog, documentation, and an authenticated multi-tenant dashboard. The marketing pages need SEO and speed; the app needs real-time data and user-specific views.",
     customerExamples: ["Zapier", "HashiCorp", "Vercel itself"],
     problemStatement: "SaaS companies often maintain separate codebases for marketing site and application. This doubles infrastructure costs, creates inconsistent UX, and makes shared components impossible. SPAs (Create React App) have poor SEO and slow initial loads.",
+    mermaidChart: `graph TB
+    subgraph Edge["Edge Middleware"]
+        MW["Geo-routing / Paywall / A-B Tests"]
+    end
+    subgraph Nextjs["Next.js on Vercel"]
+        HOME["/ Homepage\nISR 5min"]
+        ARTICLE["/article/slug\nISR + Webhook"]
+        LIVE["/live\nSSR realtime"]
+        SEARCH["/search\nSSR/CSR"]
+    end
+    subgraph APIs["Backend Services"]
+        CMS["Sanity CMS"]
+        ADS["Ad Manager"]
+        ALG["Algolia"]
+        ANALYTICS["Segment"]
+    end
+    MW --> Nextjs
+    CMS -->|webhook| ARTICLE
+    HOME --> CMS
+    SEARCH --> ALG
+    LIVE --> ANALYTICS`,
     architecture: {
       layers: [
         { name: "Public Site", detail: "SSG marketing pages, ISR blog, SSG documentation", tech: "Next.js SSG, MDX" },
@@ -220,6 +285,27 @@ const useCases: UseCase[] = [
     overview: "An AI application with conversational chat, document analysis, code generation, or multi-agent workflows. Leverages Vercel's AI Cloud layer (AI SDK, Gateway, Sandbox) with Fluid Compute for cost-efficient streaming.",
     customerExamples: ["OpenAI (ChatGPT)", "Anthropic", "Perplexity"],
     problemStatement: "AI applications on traditional serverless are prohibitively expensive — a 30-second streaming response costs 30 seconds of compute billing. Cold starts disrupt real-time chat UX. Switching LLM providers requires code rewrites. Multi-step agents time out on serverless functions.",
+    mermaidChart: `graph TB
+    subgraph Edge["Edge Middleware"]
+        MW["Geo-routing / Paywall / A-B Tests"]
+    end
+    subgraph Nextjs["Next.js on Vercel"]
+        HOME["/ Homepage\nISR 5min"]
+        ARTICLE["/article/slug\nISR + Webhook"]
+        LIVE["/live\nSSR realtime"]
+        SEARCH["/search\nSSR/CSR"]
+    end
+    subgraph APIs["Backend Services"]
+        CMS["Sanity CMS"]
+        ADS["Ad Manager"]
+        ALG["Algolia"]
+        ANALYTICS["Segment"]
+    end
+    MW --> Nextjs
+    CMS -->|webhook| ARTICLE
+    HOME --> CMS
+    SEARCH --> ALG
+    LIVE --> ANALYTICS`,
     architecture: {
       layers: [
         { name: "Chat UI", detail: "Next.js with useChat() hook for streaming UI, message history, input handling", tech: "AI SDK, useChat(), React" },
@@ -280,6 +366,31 @@ const useCases: UseCase[] = [
     overview: "A platform that hosts hundreds or thousands of customer websites (landing pages, microsites, campaign pages) under custom domains. Each tenant gets their own branded site with shared infrastructure. Think Wix, Webflow, or agency white-label platforms.",
     customerExamples: ["Webflow-style platforms", "Agency white-label solutions", "Campaign hosting platforms"],
     problemStatement: "Agencies managing 100+ client sites need individual hosting for each, multiplying infrastructure costs. Custom domains require manual DNS management. Shared templates need per-tenant customization without code changes.",
+    mermaidChart: `graph TB
+    subgraph Edge["Edge Middleware"]
+        MW["Auth Check"]
+    end
+    subgraph Public["Public - No Auth"]
+        SSG["/ Marketing\nSSG"]
+        BLOG["/blog\nISR"]
+        DOCS["/docs\nSSG MDX"]
+    end
+    subgraph App["App - Authenticated"]
+        DASH["/app/dashboard\nSSR/RSC"]
+        SETTINGS["/app/settings\nSSR/RSC"]
+        API["/api/*\nRoute Handlers"]
+    end
+    subgraph Services["Services"]
+        AUTH["Clerk Auth"]
+        DB["Vercel Postgres"]
+        INN["Inngest"]
+        STRIPE["Stripe"]
+    end
+    MW --> Public
+    MW --> App
+    DASH --> DB
+    API --> DB
+    App --> AUTH`,
     architecture: {
       layers: [
         { name: "Routing", detail: "Middleware matches custom domain → tenant config, rewrites to tenant-specific routes", tech: "Edge Middleware, wildcard domains" },
@@ -339,6 +450,31 @@ const useCases: UseCase[] = [
     overview: "A comprehensive developer documentation platform with versioned docs, interactive code examples, API references, search, and community contributions. Built with MDX for developer-friendly authoring and Git-based workflows.",
     customerExamples: ["Vercel Docs", "Next.js Docs", "Stripe Docs"],
     problemStatement: "Traditional documentation tools (GitBook, ReadTheDocs, Docusaurus) have limited customization, poor search, no preview deployments for doc PRs, and slow builds for large doc sets. Versioning across releases is manual and error-prone.",
+    mermaidChart: `graph TB
+    subgraph Edge["Edge Middleware"]
+        MW["Auth Check"]
+    end
+    subgraph Public["Public - No Auth"]
+        SSG["/ Marketing\nSSG"]
+        BLOG["/blog\nISR"]
+        DOCS["/docs\nSSG MDX"]
+    end
+    subgraph App["App - Authenticated"]
+        DASH["/app/dashboard\nSSR/RSC"]
+        SETTINGS["/app/settings\nSSR/RSC"]
+        API["/api/*\nRoute Handlers"]
+    end
+    subgraph Services["Services"]
+        AUTH["Clerk Auth"]
+        DB["Vercel Postgres"]
+        INN["Inngest"]
+        STRIPE["Stripe"]
+    end
+    MW --> Public
+    MW --> App
+    DASH --> DB
+    API --> DB
+    App --> AUTH`,
     architecture: {
       layers: [
         { name: "Content", detail: "MDX files in Git — version-controlled documentation with React components in Markdown", tech: "MDX, next-mdx-remote, contentlayer" },
@@ -397,6 +533,29 @@ const useCases: UseCase[] = [
     overview: "A customer-facing financial portal for banking, insurance, or fintech — account dashboards, transaction history, loan applications, and investment tracking. Requires strict security, compliance (PCI DSS, SOC 2), and real-time data.",
     customerExamples: ["PayPal", "Ramp", "Modern banking startups"],
     problemStatement: "Legacy banking portals are slow, monolithic, and difficult to modernize. They lack mobile-first design, have poor accessibility, and can't meet modern security requirements without massive infrastructure investment. Compliance requires audit trails and data residency.",
+    mermaidChart: `graph TB
+    subgraph Frontend["Next.js Frontend"]
+        CHAT["/chat\nRSC + useChat"]
+        HISTORY["/history\nSSR auth"]
+    end
+    subgraph Functions["Vercel Functions - Fluid Compute"]
+        CHATAPI["/api/chat\nstreamText"]
+        SEARCHAPI["/api/search\nEdge Function"]
+        AGENT["/api/agent\nuse-workflow"]
+    end
+    subgraph AI["AI Services"]
+        GW["AI Gateway"]
+        OPENAI["OpenAI"]
+        ANTHROPIC["Anthropic"]
+        PINECONE["Pinecone"]
+        SANDBOX["Sandbox"]
+    end
+    CHAT --> CHATAPI
+    CHATAPI --> GW
+    GW --> OPENAI
+    GW --> ANTHROPIC
+    SEARCHAPI --> PINECONE
+    AGENT --> SANDBOX`,
     architecture: {
       layers: [
         { name: "Public Site", detail: "SSG marketing pages, rate/calculator tools", tech: "Next.js SSG" },
@@ -458,6 +617,29 @@ const useCases: UseCase[] = [
     overview: "A patient-facing healthcare portal for appointment booking, medical records access, telehealth, prescription management, and health dashboards. Requires HIPAA compliance, strict data access controls, and accessibility (WCAG 2.1 AA).",
     customerExamples: ["Telehealth startups", "Hospital systems", "Health tech companies"],
     problemStatement: "Healthcare portals must be HIPAA-compliant, accessible, and secure while delivering a modern user experience. Legacy portals built on enterprise Java/C# platforms are slow, difficult to update, and provide poor mobile experiences — frustrating for patients who expect consumer-grade UX.",
+    mermaidChart: `graph TB
+    subgraph Frontend["Next.js Frontend"]
+        CHAT["/chat\nRSC + useChat"]
+        HISTORY["/history\nSSR auth"]
+    end
+    subgraph Functions["Vercel Functions - Fluid Compute"]
+        CHATAPI["/api/chat\nstreamText"]
+        SEARCHAPI["/api/search\nEdge Function"]
+        AGENT["/api/agent\nuse-workflow"]
+    end
+    subgraph AI["AI Services"]
+        GW["AI Gateway"]
+        OPENAI["OpenAI"]
+        ANTHROPIC["Anthropic"]
+        PINECONE["Pinecone"]
+        SANDBOX["Sandbox"]
+    end
+    CHAT --> CHATAPI
+    CHATAPI --> GW
+    GW --> OPENAI
+    GW --> ANTHROPIC
+    SEARCHAPI --> PINECONE
+    AGENT --> SANDBOX`,
     architecture: {
       layers: [
         { name: "Patient UX", detail: "Accessible, mobile-first Next.js application with SSR for patient data", tech: "Next.js, React, ARIA, WCAG 2.1 AA" },
@@ -519,6 +701,28 @@ const useCases: UseCase[] = [
     overview: "An online learning platform with course catalogs, video lessons, interactive quizzes, progress tracking, certificates, and real-time collaboration. Supports both self-paced and instructor-led learning with thousands of concurrent students.",
     customerExamples: ["Coursera-style platforms", "Corporate training portals", "Bootcamp platforms"],
     problemStatement: "Monolithic LMS platforms (Moodle, Blackboard) are slow, have poor UX, require server maintenance, and can't handle traffic spikes during enrollment periods or exam windows. Content updates require technical expertise.",
+    mermaidChart: `graph TB
+    subgraph Domains["Custom Domains"]
+        A["client-a.com"]
+        B["client-b.com"]
+        C["*.platform.com"]
+    end
+    subgraph Edge["Edge Middleware"]
+        MW["Tenant ID from hostname"]
+    end
+    subgraph Nextjs["Next.js Single Deployment"]
+        RENDER["Dynamic rendering\ntenant config + theme"]
+    end
+    subgraph Services["Services"]
+        EC["Edge Config\nThemes"]
+        KV["Vercel KV\nSessions"]
+        CMS["CMS\nContent"]
+    end
+    Domains --> MW
+    MW --> Nextjs
+    RENDER --> EC
+    RENDER --> KV
+    RENDER --> CMS`,
     architecture: {
       layers: [
         { name: "Course Catalog", detail: "ISR pages for discoverable course listings and landing pages (SEO)", tech: "Next.js ISR, SEO metadata" },
@@ -579,6 +783,28 @@ const useCases: UseCase[] = [
     overview: "A collaborative workspace application like Notion, Figma, or Linear — real-time document editing, presence indicators, commenting, and shared project views. Requires real-time sync, offline support, and enterprise-grade access controls.",
     customerExamples: ["Notion", "Linear", "Loom"],
     problemStatement: "Real-time collaboration requires persistent connections (WebSockets), low latency conflict resolution, and offline-first architecture. Traditional serverless platforms can't handle persistent connections. Client-heavy apps have poor SEO and slow initial loads.",
+    mermaidChart: `graph TB
+    subgraph Domains["Custom Domains"]
+        A["client-a.com"]
+        B["client-b.com"]
+        C["*.platform.com"]
+    end
+    subgraph Edge["Edge Middleware"]
+        MW["Tenant ID from hostname"]
+    end
+    subgraph Nextjs["Next.js Single Deployment"]
+        RENDER["Dynamic rendering\ntenant config + theme"]
+    end
+    subgraph Services["Services"]
+        EC["Edge Config\nThemes"]
+        KV["Vercel KV\nSessions"]
+        CMS["CMS\nContent"]
+    end
+    Domains --> MW
+    MW --> Nextjs
+    RENDER --> EC
+    RENDER --> KV
+    RENDER --> CMS`,
     architecture: {
       layers: [
         { name: "App Shell", detail: "Next.js with RSC for fast initial load — SSR the workspace, CSR the editor", tech: "Next.js App Router, RSC" },
@@ -758,18 +984,7 @@ export default function UseCasesPage() {
                 {/* Architecture Diagram */}
                 <div className="mb-4">
                   <h4 style={{ color: uc.color, fontSize: "0.95rem", fontWeight: 700, marginBottom: "0.75rem" }}>🏗️ Architecture</h4>
-                  <pre style={{
-                    background: "rgba(0,0,0,0.4)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "10px",
-                    padding: "1rem",
-                    color: "#10b981",
-                    fontSize: "0.75rem",
-                    overflowX: "auto",
-                    lineHeight: 1.5,
-                  }}>
-                    {uc.architecture.diagram}
-                  </pre>
+                  <MermaidDiagram chart={uc.mermaidChart} id={`uc-${uc.id}`} />
                   <div className="row g-2 mt-2">
                     {uc.architecture.layers.map((l, i) => (
                       <div key={i} className="col-md-6 col-lg-4">
