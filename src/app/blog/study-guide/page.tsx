@@ -6,8 +6,8 @@ const parts = [
     icon: "🎯",
     color: "#667eea",
     chapters: [
-      { num: 1, title: "What the Role Actually Is", desc: "Day-to-day SE activities, technical discovery, architecture design, code audits, and the business-technical duality" },
-      { num: 2, title: "The Vercel Platform — Mental Model", desc: "The four-layer model: DX, Compute, Edge Network, AI Cloud. Core value proposition and key company facts" },
+      { num: 1, slug: "what-the-role-is", title: "What the Role Actually Is", desc: "Day-to-day SE activities, technical discovery, architecture design, code audits, and the business-technical duality" },
+      { num: 2, slug: "mental-model", title: "The Vercel Platform — Mental Model", desc: "The four-layer model: DX, Compute, Edge Network, AI Cloud. Core value proposition and key company facts" },
     ],
   },
   {
@@ -15,11 +15,11 @@ const parts = [
     icon: "🚀",
     color: "#f472b6",
     chapters: [
-      { num: 3, title: "The Build Pipeline & Deployment Model", desc: "Git push → build → deploy flow, branch previews, deployment protection, Turbopack (700× faster)" },
-      { num: 4, title: "Preview Deployments", desc: "Live PR previews for design reviews, QA, client approvals. GitHub/GitLab integration with PR comments" },
-      { num: 5, title: "Compute — The Three Runtimes", desc: "Edge Runtime vs Serverless vs Static. Limits, use cases, and the comparison matrix" },
-      { num: 6, title: "Fluid Compute — The 2025 Game Changer", desc: "Concurrent request handling, Active CPU pricing, streaming cost reduction, bytecode caching" },
-      { num: 7, title: "Edge Network & CDN", desc: "Global PoPs, cache hierarchy, Cache-Control headers, Skew Protection for zero-downtime deploys" },
+      { num: 3, slug: "build-pipeline", title: "The Build Pipeline & Deployment Model", desc: "Git push → build → deploy flow, branch previews, deployment protection, Turbopack (700× faster)" },
+      { num: 4, slug: "preview-deployments", title: "Preview Deployments", desc: "Live PR previews for design reviews, QA, client approvals. GitHub/GitLab integration with PR comments" },
+      { num: 5, slug: "compute-runtimes", title: "Compute — The Three Runtimes", desc: "Edge Runtime vs Serverless vs Static. Limits, use cases, and the comparison matrix" },
+      { num: 6, slug: "fluid-compute", title: "Fluid Compute — The 2025 Game Changer", desc: "Concurrent request handling, Active CPU pricing, streaming cost reduction, bytecode caching" },
+      { num: 7, slug: "edge-network", title: "Edge Network & CDN", desc: "Global PoPs, cache hierarchy, Cache-Control headers, Skew Protection for zero-downtime deploys" },
     ],
   },
   {
@@ -27,10 +27,10 @@ const parts = [
     icon: "⚡",
     color: "#34d399",
     chapters: [
-      { num: 8, title: "Next.js Rendering Strategies", desc: "SSG, ISR, SSR, RSC — full code examples, decision matrix, and when to use each strategy" },
-      { num: 9, title: "Caching — The Most Important Topic", desc: "Four cache layers, fetch() cache, on-demand revalidation, unstable_cache, anti-patterns" },
-      { num: 10, title: "Middleware & Routing", desc: "Edge middleware for auth, A/B testing, geo-routing. What middleware should and should NOT do" },
-      { num: 11, title: "Core Web Vitals", desc: "LCP, CLS, INP deep dives with Next.js fixes. SEO impact and performance optimization" },
+      { num: 8, slug: "rendering-strategies", title: "Next.js Rendering Strategies", desc: "SSG, ISR, SSR, RSC — full code examples, decision matrix, and when to use each strategy" },
+      { num: 9, slug: "caching", title: "Caching — The Most Important Topic", desc: "Four cache layers, fetch() cache, on-demand revalidation, unstable_cache, anti-patterns" },
+      { num: 10, slug: "middleware-routing", title: "Middleware & Routing", desc: "Edge middleware for auth, A/B testing, geo-routing. What middleware should and should NOT do" },
+      { num: 11, slug: "core-web-vitals", title: "Core Web Vitals", desc: "LCP, CLS, INP deep dives with Next.js fixes. SEO impact and performance optimization" },
     ],
   },
   {
@@ -38,9 +38,9 @@ const parts = [
     icon: "🔧",
     color: "#fbbf24",
     chapters: [
-      { num: 12, title: "Edge Config & KV Storage", desc: "Feature flags, Vercel KV (Redis), Blob storage, Postgres. Ultra-low latency reads at the edge" },
-      { num: 13, title: "Observability", desc: "Speed Insights, RUM data, OpenTelemetry, log drains. Core Web Vitals measurement and alerting" },
-      { num: 14, title: "Security — WAF, DDoS, Access Control", desc: "Managed WAF, DDoS mitigation, deployment protection, env vars, SOC 2/HIPAA/PCI compliance" },
+      { num: 12, slug: "edge-config-kv", title: "Edge Config & KV Storage", desc: "Feature flags, Vercel KV (Redis), Blob storage, Postgres. Ultra-low latency reads at the edge" },
+      { num: 13, slug: "observability", title: "Observability", desc: "Speed Insights, RUM data, OpenTelemetry, log drains. Core Web Vitals measurement and alerting" },
+      { num: 14, slug: "security", title: "Security — WAF, DDoS, Access Control", desc: "Managed WAF, DDoS mitigation, deployment protection, env vars, SOC 2/HIPAA/PCI compliance" },
     ],
   },
   {
@@ -48,7 +48,7 @@ const parts = [
     icon: "🤖",
     color: "#a78bfa",
     chapters: [
-      { num: 15, title: "The AI Cloud Layer", desc: "AI SDK, Agent abstraction, use-workflow, AI Gateway, Sandbox, v0, and Fluid Compute cost benefits" },
+      { num: 15, slug: "ai-cloud", title: "The AI Cloud Layer", desc: "AI SDK, Agent abstraction, use-workflow, AI Gateway, Sandbox, v0, and Fluid Compute cost benefits" },
     ],
   },
   {
@@ -56,11 +56,11 @@ const parts = [
     icon: "🏗️",
     color: "#fb923c",
     chapters: [
-      { num: 16, title: "Composable Architecture", desc: "Headless CMS + ISR pattern, commerce patterns, the composable stack with best-of-breed services" },
-      { num: 17, title: "Common Customer Architectures", desc: "E-commerce, media/publishing, SaaS dashboard, and AI application architecture diagrams" },
-      { num: 18, title: "Migration Patterns", desc: "CRA → Next.js, Gatsby → Next.js, self-hosted → Vercel, Pages Router → App Router" },
-      { num: 19, title: "Pricing Model — In Depth", desc: "Hobby/Pro/Enterprise plans, cost growth triggers, spend management, upgrade trigger points" },
-      { num: 20, title: "Enterprise Features", desc: "99.99% SLA, SAML SSO + SCIM, multi-region compute, audit logs, custom WAF rules, log drains" },
+      { num: 16, slug: "composable-architecture", title: "Composable Architecture", desc: "Headless CMS + ISR pattern, commerce patterns, the composable stack with best-of-breed services" },
+      { num: 17, slug: "customer-architectures", title: "Common Customer Architectures", desc: "E-commerce, media/publishing, SaaS dashboard, and AI application architecture diagrams" },
+      { num: 18, slug: "migration-patterns", title: "Migration Patterns", desc: "CRA → Next.js, Gatsby → Next.js, self-hosted → Vercel, Pages Router → App Router" },
+      { num: 19, slug: "pricing", title: "Pricing Model — In Depth", desc: "Hobby/Pro/Enterprise plans, cost growth triggers, spend management, upgrade trigger points" },
+      { num: 20, slug: "enterprise-features", title: "Enterprise Features", desc: "99.99% SLA, SAML SSO + SCIM, multi-region compute, audit logs, custom WAF rules, log drains" },
     ],
   },
   {
@@ -68,8 +68,8 @@ const parts = [
     icon: "🎤",
     color: "#f87171",
     chapters: [
-      { num: 21, title: "SE Interview Topics & Common Questions", desc: "7 discovery questions, 5 technical interview Q&As with full answers, 8 codebase red flags" },
-      { num: 22, title: "Glossary", desc: "25 key terms defined — DX Platform, Fluid Compute, ISR, RSC, Skew Protection, MACH, and more" },
+      { num: 21, slug: "interview-topics", title: "SE Interview Topics & Common Questions", desc: "7 discovery questions, 5 technical interview Q&As with full answers, 8 codebase red flags" },
+      { num: 22, slug: "glossary", title: "Glossary", desc: "25 key terms defined — DX Platform, Fluid Compute, ISR, RSC, Skew Protection, MACH, and more" },
     ],
   },
 ];
@@ -109,7 +109,7 @@ export default function StudyGuidePage() {
                 {part.chapters.map((ch) => (
                   <div key={ch.num} className="col-md-6">
                     <Link
-                      href={`/blog/study-guide/content#${ch.num}`}
+                      href={`/blog/study-guide/${ch.slug}`}
                       style={{ textDecoration: "none" }}
                     >
                       <div className="feature-card h-100" style={{ padding: "1.25rem" }}>
